@@ -1,0 +1,10 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: companyrules03-rdslcs
+  host: companyrules03-rdslcs
+  disk_quota: 1024M
+  services:
+  - companyrules03-rdslcs-cloudantNoSQLDB
