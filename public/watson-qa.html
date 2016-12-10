@@ -1,0 +1,384 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SLC規程Q＆A </title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+  body {
+      padding-top: 80px;
+      padding-bottom: 100px;
+
+  }
+  .bs-component {
+    position: relative;
+  }
+  div#headerArea {
+    position: fixed !important;
+    position: absolute;
+    background-color: #5BC0DE;
+    color: #FFF;
+    top: 0;
+    height: 50px;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+  }
+  div#conversation_field {
+    padding-left: 0%;
+    padding-right: 10%;
+  }
+  div#footerArea {
+    position: fixed !important;
+    position: absolute;
+    background-color: #FFFFFF;
+    bottom: 0;
+    height: 100px;
+    padding-top: 10px;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+  }
+  /* balloon common */
+div.balloon-wrapper {
+	width: 500px;
+	margin: 15px auto;
+}
+div.balloon-wrapper::after {
+	clear: both;
+	content: "";
+	display: block;
+	line-height: 0;
+}
+p.balloon-left,
+p.balloon-right {
+	position: relative;
+	z-index: 1;
+	max-width: 80%;
+	min-width: 10%;
+	margin: 15px auto;
+	padding: 13px;
+	background-color: #fff;
+	border-width: 3px;
+	border-style: solid;
+	border-radius: 10px;
+}
+p.balloon-left2 {
+    font-size: 12px;
+	position: relative;
+	z-index: 1;
+	max-width: 80%;
+	min-width: 10%;
+	padding: 13px;
+	background-color: #fff;
+	border-width: 3px;
+	border-style: solid;
+	border-radius: 10px;
+}
+p.balloon-left::before,
+p.balloon-left2::before,
+p.balloon-right::before {
+	content: "";
+	display: block;
+	position: absolute;
+	z-index: 10;
+	top: 10px;
+	width:  0;
+	height: 0;
+	border: 15px solid transparent;
+}
+p.balloon-left::after,
+p.balloon-left2::after,
+p.balloon-right::after {
+	content: "";
+	display: block;
+	position: absolute;
+	z-index: 100;
+	top: 10px;
+	width:  0;
+	height: 0;
+	border: 15px solid transparent;
+}
+  /* balloon left */
+p.balloon-left {
+	float: left;
+	border-color: #66FF99;
+  background-color: #66FF99;
+}
+p.balloon-left::before {
+	left: -31px;
+	border-right: 15px solid #66FF99;
+}
+p.balloon-left::after {
+	left: -26px;
+	/* border-right: 15px solid #fff;*/
+}
+
+  /* balloon left2 */
+p.balloon-left2 {
+	float: left;
+	border-color: #FFCCFF;
+      background-color: #FFCCFF;
+}
+p.balloon-left2::before {
+	left: -31px;
+	border-right: 15px solid #FFCCFF;
+}
+p.balloon-left2::after {
+	left: -26px;
+	/* -right: 15px solid #fff; */
+}
+
+/* balloon right */
+p.balloon-right {
+	float: right;
+	border-color: WhiteSmoke;
+    background-color: WhiteSmoke;
+}
+p.balloon-right::before {
+	right: -31px;
+	border-left: 15px solid WhiteSmoke;
+
+}
+p.balloon-right::after {
+	right: -26px;
+	border-left: 15px solid WhiteSmoke;
+}
+.fa {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  color: #78DB6B;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+  </style>
+
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+
+</head>
+
+
+<body>
+
+  <!-- header
+  ================================================== -->
+  <header>
+      <div class="container-fluid" id="headerArea">
+        <h4>SLC規定Q＆A</h4>
+      </div><!-- /.container-fluid -->
+  </header>
+
+  <!-- ガイド部分
+  ================================================== -->
+  <div class="row">
+    <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12">
+        <div class="bs-component">
+            <div id="conversation_field"></div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Footer箇所
+  ================================================== -->
+  <div class="row container-fluid" id="footerArea">
+    <div class="col-sm-8 col-xs-11">
+    	<div class="form-group">
+        	<textarea class="form-control" rows="1" id="QuestionText" onkeydown="if(event.keyCode == 13){askwatson($('#QuestionText').val());}" placeholder="テキストを入力してEnterキーを押してください"></textarea>
+    	</div>
+    </div>
+  </div>
+
+<!--
+  <div>
+
+    <div id="b-box" >
+<h5>WAVファイル作成</h5>
+</div>
+
+<div id="b-box"  >
+<p>
+  <button onclick="startRecording(this);">録音</button>
+  <button onclick="stopRecording(this);" disabled>停止</button>
+    <button onclick="askwatson($('#QuestionText').val());">送信</button>
+</p>
+</div>
+
+<div id="b-box" >
+<h5>録音ファイル</h5>
+<ul id="recordingslist"></ul>
+
+<h5>ステータス</h5>
+<pre id="log"></pre>
+</div>
+  </div>
+</div>
+-->
+  <!-- JavaScript Section
+  ================================================== -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <script>
+  var answerNumber = 1;
+  var conversation_id = "";
+  var client_id = "";
+  var dialog=false;
+
+  $(function(){
+    setTimeout(function(){
+      document.getElementById("conversation_field").innerHTML += '<div class="row"><div class="col-xs-11"><table width="100%"><tr><td><img src="images/ibm_watson4.png"></td><td><p class="balloon-left">こんにちは、SLC社内規程について何か質問はございますか？</p></td></tr></table></div></div>';
+     },1000);
+    });
+
+
+  function askwatson(question) {
+    question = question.replace(/\r?\n/g,"");
+    question_no_space = question.replace(/\s/g,"");
+    if(question_no_space != "") {
+        document.getElementById("conversation_field").innerHTML += '<div class="row"><div class="col-xs-11"><p class="balloon-right" id="watsonAnswer' + answerNumber + '">' + question + '</p></div></div>';
+        $('#QuestionText').val("");
+        if(dialog){
+
+        $.ajax({
+            url: '/sampleanswerdialog',
+            type: "POST",
+            data: {
+                "conversation_id" : conversation_id,
+                "client_id" : client_id,
+                "input_text" : question
+            },
+            dataType: 'json',
+        })
+        .done(function(response){
+            // カンバセーション2回目以降
+            document.getElementById("conversation_field").innerHTML += '<div class="row"><div class="col-xs-11"><table width="100%"><tr><td><img src="images/ibm_watson4.png"></td><td><p class="balloon-left">' + response.conresponse +  '</p></td></tr></table>' + '</div></div>';
+            document.getElementById("watsonAnswer" + answerNumber).scrollIntoView(true);
+            document.getElementById("QuestionText").focus();
+            $(response.sttresponse).val("");
+            answerNumber++;
+
+        //    for(var i=0; i<response.conresponse.length; i++){
+              if(response.conresponse=="その他ご質問等がございましたら何でもおっしゃってくださいね" || response.conresponse=="すみません。お答えできません。内容を変えてもう一度質問していただけますか。"){
+        //        response.response.splice(i+1,2);
+                  dialog=false;
+                }
+        //  }
+        //    document.getElementById("watsonAnswer" + answerNumber).scrollIntoView(true);
+        //    document.getElementById("QuestionText").focus();
+        //    $('#QuestionText').val("");
+        //    answerNumber++;
+
+        })
+        .fail(function( jqXHR, textStatus, errorThrown ){
+        });
+        }else{
+            $.ajax({
+            url: '/sampleanswer',
+            type: "POST",
+            data: {
+                "input_text" : question
+            },
+            dataType: 'json',
+        })
+        .done(function(response){
+            if(response.conversation_id != null){
+                            document.getElementById("conversation_field").innerHTML += '<div class="row"><div class="col-xs-11"><table width="100%"><tr><td><img src="images/ibm_watson4.png"></td><td><p class="balloon-left">' + response.conresponse +  '</p></td></tr></table>' + '</div></div>';
+                conversation_id = response.conversation_id;
+                dialog=true;
+            }
+            else{
+            document.getElementById("conversation_field").innerHTML += '<div class="row"><div class="col-xs-11"><table width="100%"><tr><td><img src="images/ibm_watson4.png"></td><td><p class="balloon-left">' + response.response + '<BR><BR>' + '確信度：' +  (response.classes[0].confidence * 100).toFixed(2) + '％' + '</p></td></tr><tr><td></td></div></div>';
+//            document.getElementById("conversation_field").innerHTML += '<div class="row"><div class="col-xs-11"><table width="100%"><tr><td><img src="images/ibm_watson4.png"></td><td><p class="balloon-left">' + response.response + '<BR><BR>' + '確信度：' +  (response.classes[0].confidence * 100).toFixed(2) + '％' + '</p></td></tr><tr><td></td><td>' + '<p class="balloon-left2">' + 'R&Rの回答：' + '<BR>' + response.rrresponse+ '<BR><BR>' + '関連度：' + (response.rrscore* 10).toFixed(2)+ '％' + '</p></td></tr></table>' + '</div></div>';
+            }
+            document.getElementById("watsonAnswer" + answerNumber).scrollIntoView(true);
+            document.getElementById("QuestionText").focus();
+            $('#QuestionText').val("");
+            answerNumber++;
+
+        })
+        .fail(function( jqXHR, textStatus, errorThrown ){
+        });
+        }
+    }
+    // sttで使用
+    else{
+        document.getElementById("conversation_field").innerHTML += '<div class="row"><div class="col-xs-11"><p class="balloon-right" id="watsonAnswer' + answerNumber + '">' + sttsocketres + '</p></div></div>';
+        $(sttsocketres).val("");
+        if(dialog){
+
+        $.ajax({
+            url: '/sampleanswerdialog',
+            type: "POST",
+            data: {
+                "conversation_id" : conversation_id,
+                "client_id" : client_id,
+                "input_text" : sttsocketres
+            },
+            dataType: 'json',
+        })
+        .done(function(response){
+            // カンバセーション2回目以降
+            document.getElementById("conversation_field").innerHTML += '<div class="row"><div class="col-xs-11"><table width="100%"><tr><td><img src="images/ibm_watson4.png"></td><td><p class="balloon-left">' + response.conresponse +  '</p></td></tr></table>' + '</div></div>';
+            document.getElementById("watsonAnswer" + answerNumber).scrollIntoView(true);
+            document.getElementById("QuestionText").focus();
+            $('#QuestionText').val("");
+            answerNumber++;
+
+        //    for(var i=0; i<response.conresponse.length; i++){
+              if(response.conresponse=="その他ご質問等がございましたら何でもおっしゃってくださいね" || response.conresponse=="すみません。お答えできません。内容を変えてもう一度質問していただけますか。"){
+        //        response.response.splice(i+1,2);
+                  dialog=false;
+                }
+        //  }
+        //    document.getElementById("watsonAnswer" + answerNumber).scrollIntoView(true);
+        //    document.getElementById("QuestionText").focus();
+        //    $('#QuestionText').val("");
+        //    answerNumber++;
+
+        })
+        .fail(function( jqXHR, textStatus, errorThrown ){
+        });
+        }else{
+            $.ajax({
+            url: '/sampleanswer',
+            type: "POST",
+            data: {
+                "input_text" : sttsocketres
+            },
+            dataType: 'json',
+        })
+        .done(function(response){
+            if(response.conversation_id != null){
+                            document.getElementById("conversation_field").innerHTML += '<div class="row"><div class="col-xs-11"><table width="100%"><tr><td><img src="images/ibm_watson4.png"></td><td><p class="balloon-left">' + response.conresponse +  '</p></td></tr></table>' + '</div></div>';
+                conversation_id = response.conversation_id;
+                dialog=true;
+            }
+            else{
+            document.getElementById("conversation_field").innerHTML += '<div class="row"><div class="col-xs-11"><table width="100%"><tr><td><img src="images/ibm_watson4.png"></td><td><p class="balloon-left">' + response.response + '<BR><BR>' + '確信度：' +  (response.classes[0].confidence * 100).toFixed(2) + '％' + '</p></td></tr><tr><td></td><td>' + '<p class="balloon-left2">' + 'R&Rの回答：' + '<BR>' + response.rrresponse + '</p></td></tr></table>' + '</div></div>';
+//            document.getElementById("conversation_field").innerHTML += '<div class="row"><div class="col-xs-11"><table width="100%"><tr><td><img src="images/ibm_watson4.png"></td><td><p class="balloon-left">' + response.response + '<BR><BR>' + '確信度：' +  (response.classes[0].confidence * 100).toFixed(2) + '％' + '</p></td></tr><tr><td></td><td>' + '<p class="balloon-left2">' + 'R&Rの回答：' + '<BR>' + response.rrresponse+ '<BR><BR>' + '関連度：' + (response.rrscore* 10).toFixed(2)+ '％' + '</p></td></tr></table>' + '</div></div>';
+            }
+            document.getElementById("watsonAnswer" + answerNumber).scrollIntoView(true);
+            document.getElementById("QuestionText").focus();
+            $('#QuestionText').val("");
+            answerNumber++;
+
+        })
+        .fail(function( jqXHR, textStatus, errorThrown ){
+        });
+        }
+    
+    }
+  }
+  </script>
+
+</body>
